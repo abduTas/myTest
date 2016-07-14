@@ -1,0 +1,32 @@
+import java.io.IOException;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+
+public class pbdemo {
+	public static void main(String[] args) throws IOException, InterruptedException {
+		ProcessBuilder pb = new ProcessBuilder("echo","this is demo");
+		Process process = pb.start();
+		int err = process.waitFor();
+		System.out.println("echo process strted" + (err==0 ? "fail":"Yes"));
+		System.out.println("echo output" + (output(process.getInputStream())));
+//		InputStream inputstream = new InputStream(process.getInputStream());
+		
+		
+	}
+   public static String output(InputStream inputstream){
+	   
+	   BufferedReader br = new BufferedReader(new InputStreamReader(inputstream));
+	   StringBuffer sb = new StringBuffer();
+	   while(br.readLine()!=null){
+		   sb = sb.append(br.readLine() + System.getProperty("line.separator"));
+		   
+	   }
+	   
+	   
+   }
+}

@@ -1,0 +1,25 @@
+package macmilan;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class MacAutomaton {
+	public static void main(String args[]){
+	 WebDriver driver = new FirefoxDriver();
+	 
+	 //LogIn Page
+	 driver.get("http://qa.macmillanhighered.com/launchpad/myers10e");
+     driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	 driver.findElement(By.id("EMail")).sendKeys("automation.test4.instructor@macmillan.com");
+	 driver.findElement(By.id("Password")).sendKeys("Password1");
+	 WebElement element  = (WebElement) driver.findElements(By.id("loginButton"));
+	 element.click();
+	 
+	}
+
+}

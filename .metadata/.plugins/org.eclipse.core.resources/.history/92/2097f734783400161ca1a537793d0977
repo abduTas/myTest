@@ -1,0 +1,57 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+
+public class Advanced {
+
+	public static void main(String[] args) throws SQLException {
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://10.0.1.86/tatoc/advanced/hover/menu");
+		
+	
+		Actions actions=new Actions(driver);
+		WebElement mainmenu=driver.findElement(By.className("menutitle"));
+		actions.moveToElement(mainmenu);
+		WebElement submenu=driver.findElement(By.xpath("html/body/div/div[2]/div[2]/span[5]"));
+		actions.moveToElement(submenu);
+		actions.click().build().perform();
+        
+		
+		//second 
+		
+          String symbol = driver.findElement(By.id("symboldisplay")).getText();
+          System.out.println(symbol);
+          
+        Connection con = DriverManager.getConnection( "jdbc:mysql://10.0.1.86:3306/tatoc", "tatocuser","tatoc01");
+      Statement stmt =  con.createStatement();
+     
+          String query = "select id from identity where id ='"+symbol+"'";
+          ResultSet rs1 = null;
+          ResultSet rs2 = null;
+          rs1 = stmt.executeQuery(query);
+          while(rs1.next()){
+        	int id =   rs1.getInt("id");
+        	System.out.println(id );
+          }
+//          while(rs2.next()){
+//        	  String name = rs2.getString(columnIndex)
+//          }
+            rs1.close();
+          
+        }
+
+        
+	}
+
+

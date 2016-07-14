@@ -1,0 +1,61 @@
+package Tess;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Demo {
+public static void main(String[] args) throws IOException, InterruptedException {
+	 List<String> commands = new ArrayList<String>();
+	   commands.add("/bin/bash");
+	   commands.add("-c");
+	   commands.add("git add .");       
+
+	   StringBuilder out = new StringBuilder();
+
+	   ProcessBuilder pb = new ProcessBuilder(commands);
+	   pb.redirectErrorStream(true);
+	   Process process = pb.start();
+
+
+	   //EDIT:
+	   // get Exit Status   
+	   process.waitFor();
+
+
+	   File file1=new File("/home/vikashkumar/Downloads/cm2.sh");
+       FileWriter fw1 = new FileWriter(file1);
+       PrintWriter pw1 = new PrintWriter(fw1);        
+       String cloneURL ="https://github.com/abduTas/BasicCourseTestNG.git";
+       String repositoryname = "https://github.com/abduTas/BasicCourseTestNG.git";
+       String username = "abduTas";
+       String password = "abdulla27";
+       pw1.println("#!/bin/bash");
+       pw1.println("echo \"hello !!\"");  
+       pw1.println("cd ~");
+       pw1.println("cd Downloads");
+       pw1.println("cd Github");
+       pw1.println("cd "+repositoryname);
+       pw1.println("git init");
+       pw1.println("git clone "+cloneURL);
+       pw1.println("cd "+repositoryname);
+       pw1.println("git add .");
+       pw1.println("git commit -m\""+comment+"\"");
+       pw1.println("git push https://"+username+":"+password+"@github.com/"+username+"/"+repositoryname+".git");
+       pw1.println("echo \"completed\"");
+    
+       pw1.close();
+       
+       file.setExecutable(true);
+       file1.setExecutable(true);
+       
+       File wd=new File("/home/vikashkumar/Downloads");
+       ProcessBuilder processBuilder = new ProcessBuilder("./cm1.sh");
+	    processBuilder.directory(wd);
+	    processBuilder.start();      
+	    Thread.sleep(5000);
+}
+}

@@ -1,0 +1,40 @@
+
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class scriptDemo {
+	public static void readBashScript() {
+	        try {
+	            //Process proc = Runtime.getRuntime().exec("/home/listing.sh /"); //Whatever you want to execute
+	            File file =new File("/home/listing.sh");
+	            file .createNewFile();
+	            String commands = " cd /home"+"\n"; 
+	            commands+="mkdir"+" apnidirectory \n";
+	            commands+="cd apnidirectory \n";
+	            commands+="git init  \n";
+	            commands+="git add . \n";
+	            commands+="git remote add origin  \n";
+	            Date dte =new Date();
+	            Timestamp t=new Timestamp(dte.getTime());
+	            
+	            commands+="git commit -m\"first commit \""+t.toGMTString();
+	            PrintWriter pw = new PrintWriter(file);
+	            pw.write(commands);
+	            
+	            
+	            BufferedReader read = new BufferedReader(new InputStreamReader(
+	                    proc.getInputStream()));
+	            try {
+	                proc.waitFor();
+	            } catch (InterruptedException e) {
+	                System.out.println(e.getMessage());
+	            }
+	            while (read.ready()) {
+	                System.out.println(read.readLine());
+	            }
+	        } catch (IOException e) {
+	            System.out.println(e.getMessage());
+	        }
+	    }
+}

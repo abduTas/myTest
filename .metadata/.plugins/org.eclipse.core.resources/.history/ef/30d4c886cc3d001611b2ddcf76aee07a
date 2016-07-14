@@ -1,0 +1,20 @@
+package macmilan;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class MacAutomaton {
+	public static void main(String args[]){
+	 WebDriver driver = new FirefoxDriver();
+	 
+	 //LogIn Page
+	 driver.get("http://qa.macmillanhighered.com/launchpad/myers10e");
+	 driver.findElement(By.id("EMail")).sendKeys("automation.test4.instructor@macmillan.com");
+	 driver.findElement(By.id("Password")).sendKeys("Password1");
+	 
+	 
+	 
+	}
+
+}

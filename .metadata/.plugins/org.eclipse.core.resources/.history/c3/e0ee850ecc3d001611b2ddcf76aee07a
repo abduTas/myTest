@@ -1,0 +1,13 @@
+package macmilan;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class MacAutomaton {
+	public static void main(String args[]){
+	 WebDriver driver = new FirefoxDriver();
+	 driver.get("http://qa.macmillanhighered.com/launchpad/myers10e");
+	 
+	}
+
+}

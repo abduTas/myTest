@@ -1,0 +1,71 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class scriptDemo {
+	public static void main(String a[]) throws IOException {
+	        
+	          
+//	            File file =new File("/home/abdullatasleem/Desktop/listing.sh");
+//	            file.createNewFile();
+	            String command = "ls -a";
+	            Date dte =new Date();
+	            Timestamp t=new Timestamp(dte.getTime());
+	            String commands[] = {"cd /home/abdullatasleem",
+	            "mkdir"+" apnidirectory \n",
+	            "cd apnidirectory \n",
+	            "git init  \n",
+	            "git add . \n",
+	            "git remote add origin https://github.com/abduTas/New.git \n",
+	            "git commit -m\"first commit \""+t.toGMTString()};
+//	            commands+="git push origin master";
+//	            PrintWriter pw = new PrintWriter(file);
+//	            pw.write(commands);
+//	            pw.close();
+	            Process p,p1;
+	            StringBuffer output = new StringBuffer();
+	            StringBuffer output1 = new StringBuffer();
+	    		try {
+	    			p = Runtime.getRuntime().exec(command);
+	    			p.waitFor();
+	    			BufferedReader reader = 
+	                                new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+	                            String line = "";			
+	    			while ((line = reader.readLine())!= null) {
+	    				output.append(line + "\n");
+	    			}
+
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    		System.out.println(output.toString());
+	    		try {
+	    			p1 = Runtime.getRuntime().exec(commands);
+	    			p1.waitFor();
+	    			BufferedReader reader = 
+	                                new BufferedReader(new InputStreamReader(p1.getInputStream()));
+
+	                            String line = "";			
+	    			while ((line = reader.readLine())!= null) {
+	    				output1.append(line + "\n");
+	    			}
+
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    		System.out.println(output.toString());
+////	            Process proc = Runtime.getRuntime().exec("/home/abdullatasleem/Desktop/listing.sh /"); //Whatever you want to execute
+//	            ProcessBuilder pb = new ProcessBui"cd /home/abdullatasleem","cd /home/abdullatasleem",lder("/home/abdullatasleem/Desktop/listing.sh", "myArg1", "myArg2");
+//	            Process p =pb.start();"cd /home/abdullatasleem",
+//	            ProcessBuilder processBuilder1 = new ProcessBuilder("./listing.sh");
+//	    	    processBuilder1.directory(file);
+//	    	    processBuilder1.start(); "cd /home/abdull"cd /home/abdullatasleem","cd /home/abdullatasleem","cd /home/abdullatasleem",atasleem",
+//	       
+	}
+}

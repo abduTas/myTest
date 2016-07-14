@@ -1,0 +1,39 @@
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class sele {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://10.0.1.86/tatoc/basic/grid/gate");
+		
+	  driver.findElement(By.className("greenbox")).click();
+ //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	  
+	  while(true){
+		  driver.findElement(By.linkText("repaint")).click();
+		  String s1 =  driver.switchTo().frame(driver.findElement(By.id("main"))).getClass().toString();
+	 
+	String s2 =  driver.switchTo().frame(driver.findElement(By.id("child"))).getClass().toString();	
+
+	 if(s1==s2){
+		 driver.findElement(By.linkText("proceed")).click();
+		 break;
+	 }
+	 driver.findElement(By.linkText("repaint")).click();
+	  }
+	
+	
+
+	}
+
+}

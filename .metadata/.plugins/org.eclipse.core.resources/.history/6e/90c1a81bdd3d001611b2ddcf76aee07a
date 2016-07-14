@@ -1,0 +1,20 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class OpenRepo {
+	WebDriver driver;
+	
+//	@FindBy/\
+	
+	 List<WebElement> li = driver.findElements(By.className("repo"));
+	 System.out.println("my repositories on github :");
+	 int count = 0;
+	  for(WebElement el : li){
+		  System.out.println(el.getText());
+      count++;
+	  }
+}

@@ -1,0 +1,19 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeTest;
+
+public class Setup {
+	WebDriver driver ;
+	GithubLogin gitobj ;
+	HomePage homeobj;
+	
+
+	public void setup(){
+	 driver = new FirefoxDriver();
+	 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	 driver.get("https://github.com/login");
+ }
+ 
+}

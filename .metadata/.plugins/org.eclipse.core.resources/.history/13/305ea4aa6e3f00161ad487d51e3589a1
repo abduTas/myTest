@@ -1,0 +1,27 @@
+package Tess;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Demo {
+public static void main(String[] args) throws IOException, InterruptedException {
+	 List<String> commands = new ArrayList<String>();
+	   commands.add("/bin/bash");
+	   commands.add("-c");
+	   commands.add("git add .");       
+
+	   StringBuilder out = new StringBuilder();
+
+	   ProcessBuilder pb = new ProcessBuilder(commands);
+	   pb.redirectErrorStream(true);
+	   Process process = pb.start();
+
+
+	   //EDIT:
+	   // get Exit Status   
+	   process.waitFor();
+
+
+}
+}

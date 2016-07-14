@@ -1,0 +1,39 @@
+package macmilan;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class macAutomation {
+public static void main(String[] args) {
+	WebDriver driver = new FirefoxDriver();
+	JavascriptExecutor js = (JavascriptExecutor) driver;
+	int count =0;
+	driver.get("https://qas-reg.macmillanhighered.com/Account/Unauthenticated?TargetURL=http%3a%2f%2fqa.macmillanhighered.com%2flaunchpad%2fmyers10e%2f75652");
+	
+	List<WebElement> el = driver.findElements(By.tagName("a"));
+	List<WebElement> list = new ArrayList<WebElement>(new HashSet<WebElement>(el));
+	el= driver.findElements(By.id("*"));
+	 Iterator<WebElement> it= list.iterator();
+	 
+	 WebElement element;
+     while(it.hasNext()&&(count<=40))
+     {
+         element = it.next();
+     System.out.println(element.getText());
+//     System.out.println(element.);
+     count++;
+     
+     }
+
+
+}
+}

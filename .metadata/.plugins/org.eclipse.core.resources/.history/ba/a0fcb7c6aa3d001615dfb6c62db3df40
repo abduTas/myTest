@@ -1,0 +1,51 @@
+
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+
+public class TestGitAutomation {
+  
+	WebDriver driver ;
+	GithubLogin gitobj ;
+	HomePage homeobj;
+	
+ @BeforeTest 
+	public void setup(){
+	 driver = new FirefoxDriver();
+	 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	 driver.get("https://github.com/login");
+ }
+ 
+ @Test(priority = 1)
+ public void testTitle(){
+	 gitobj = new GithubLogin(driver);
+	 homeobj = new HomePage(driver);
+	 
+	 Scanner sc = new Scanner(System.in);
+	 System.out.println("enter user name fot git account");
+	 String  name =  sc.nextLine();
+	 System.out.println("enter password ");
+	  String password = sc.nextLine();
+	 gitobj.login(name, password);
+	 String textUser = homeobj.getUserText();
+	 System.out.println(textUser);
+	 Assert.assertEquals(textUser, name);
+	 List<WebElement> li = driver.findElements(By.className("repo"));
+	 System.out.println("my repositories on github :");
+	  for(WebElement el : li){
+		  System.out.println(el.getText());
+	  }
+	 sc.close();
+	 
+ }
+}

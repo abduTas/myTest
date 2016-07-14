@@ -1,0 +1,32 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AddRepo {
+	WebDriver driver;
+	
+	@FindBy(id="repository_name")
+	WebElement newRepoName ;
+	
+	@FindBy(className="button.btn:nth-child(11)")
+    WebElement newRepoBtn;
+ 
+	public AddRepo(WebDriver driver){
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+
+	public void setNewRepoName(String name) {
+		newRepoName.sendKeys(name);
+	}
+ 
+	public void clickNewRepoBtn(){
+		newRepoBtn.click();
+	}
+    public void addRepository(String name){
+    	this.setNewRepoName(name);
+    	this.clickNewRepoBtn();
+    }	
+
+}

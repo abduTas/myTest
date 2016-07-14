@@ -1,0 +1,38 @@
+package macmilan;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class MacAutomaton {
+	public static void main(String args[]){
+	 WebDriver driver = new FirefoxDriver();
+	 
+	 //LogIn Page
+	 driver.get("http://qa.macmillanhighered.com/launchpad/myers10e");
+//     driver.manage().timeouts().eWait(10, TimeUnit.SECONDS);
+//	 JavascriptExecutor js = (JavascriptExecutor)driver ;
+//	 js.executeScript("return document.readyState").toString().equals("complete");
+//	
+     ExpectedCondition<Boolean> pageLoadCondition = new
+             ExpectedCondition<Boolean>() {
+                 public Boolean apply(WebDriver driver) {
+                     return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+                 }
+             };
+     WebDriverWait wait = new WebDriverWait(driver, 30);
+     wait.until(pageLoadCondition);
+	 driver.findElement(By.name("EMail")).sendKeys("automation.test4.instructor@macmillan.com");
+	 driver.findElement(By.name("Password")).sendKeys("Password1");
+	 WebElement element  = (WebElement) driver.findElements(By.id("loginButton"));
+	 element.click();
+	 
+	}
+
+}

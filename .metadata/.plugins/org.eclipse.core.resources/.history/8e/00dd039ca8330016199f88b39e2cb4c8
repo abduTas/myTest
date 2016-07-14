@@ -1,0 +1,26 @@
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class sele {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://10.0.1.86/tatoc/basic/grid/gate");
+		
+	driver.findElement(By.cssSelector("input#div.greenbox")).click();
+	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	
+	driver.findElement(By.name("go")).click();
+
+	}
+
+}

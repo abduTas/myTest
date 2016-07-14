@@ -1,0 +1,34 @@
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Date;
+
+public class scriptDemo {
+	public static void main(String a[]) throws IOException {
+	        
+	          
+	            File file =new File("/home/abdullatasleem/Desktop/listing.sh");
+	            file .createNewFile();
+	            String commands = " cd /home"+"\n"; 
+	            commands+="mkdir"+" apnidirectory \n";
+	            commands+="cd apnidirectory \n";
+	            commands+="git init  \n";
+	            commands+="git add . \n";
+	            commands+="git remote add origin  \n";
+	            Date dte =new Date();
+	            Timestamp t=new Timestamp(dte.getTime());
+	            
+	            commands+="git commit -m\"first commit \""+t.toGMTString();
+	            PrintWriter pw = new PrintWriter(file);
+	            pw.write(commands);
+	            pw.close();
+//	            Process proc = Runtime.getRuntime().exec("/home/abdullatasleem/Desktop/listing.sh /"); //Whatever you want to execute
+	            ProcessBuilder processBuilder1 = new ProcessBuilder("./listing.sh");
+	    	    processBuilder1.directory(file);
+	    	    processBuilder1.start(); 
+//	       
+	}
+}

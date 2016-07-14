@@ -1,0 +1,66 @@
+package Tess;
+import PageObjects.*;
+import setup.*;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+
+
+public class TestGitAutomation extends Setup{
+	AddRepo addRepoObj;
+	@Test(priority = 1)
+	 public void testTitle(){
+		 gitobj = new GithubLogin(driver);
+		 homeobj = new HomePage(driver);
+		 
+		 Scanner sc = new Scanner(System.in);
+		 System.out.println("enter user name for git account");
+		 String  name =  sc.nextLine();
+		 System.out.println("enter password ");
+		  String password = sc.nextLine();
+		 gitobj.login(name, password);
+		 String textUser = homeobj.getUserText();
+		 System.out.println(textUser);
+		 Assert.assertEquals(textUser, name);
+		
+		 sc.close();
+		 
+	 }
+	 @Test(priority=2)
+	 public void testNumRepo(){
+		 int count =0;
+		 List<WebElement> li = driver.findElements(By.className("repo"));
+		 System.out.println("my repositories on github :");
+		  for(WebElement el : li){
+			  System.out.println(el.getText());
+			  count++;
+		  }
+	   Assert.assertEquals(count,9);
+	  
+	   homeobj.addRepoClick();
+	 }
+	 @Test(priority=3)
+	 public  HomePage testWasAdded(){
+		addRepoObj = new AddRepo(driver);
+		boolean added = addRepoObj.addRepository("neven");
+		 Assert.assertEquals(added, true);
+		 return new HomePage(driver); 
+		 
+	 }
+	 @Test(dependsOnMethods = {"testWasAdded"})
+     public void testInsideRepo(){
+		 HomePage homepage = testWasAdded();
+		 homepage.openRepoClick();
+		 
+	 }    
+ 
+}
